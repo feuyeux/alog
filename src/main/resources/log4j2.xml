@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="application_dir">logs</Property>
+        <Property name="application_name">alog.log</Property>
+        <Property name="EX">%xwEx</Property>
+        <Property name="LOG_PATTERN">%clr{%date{MM-dd HH:mm:ss.SSS}}{faint}%clr{%5level}%clr{[%thread]}{magenta}%clr{%class{10}:}{cyan}%message%n${sys:EX}</Property>
+        <Property name="FILE_PATTERN">%date{yyyy-MM-dd HH:mm:ss.SSS} %5level [%thread] %class{10}:%message%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STOUT" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="rolling" fileName="${application_dir}/${application_name}"
+                     filePattern="${application_dir}/${application_name}-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${FILE_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="ERROR">
+            <AppenderRef ref="STOUT"/>
+            <AppenderRef ref="rolling"/>
+        </Root>
+
+        <Logger name="org.springframework" level="WARN"/>
+        <Logger name="org.feuyeux.alog" level="INFO"/>
+    </Loggers>
+</Configuration>

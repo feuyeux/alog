@@ -1,0 +1,13 @@
+*.DS_Store
+._*
+.Trashes
+*.class
+*.jar
+*.war
+hs_err_pid*
+target/
+.idea/
+logs/
+*.iml
+*.iws
+*.ipr
