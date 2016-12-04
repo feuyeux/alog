@@ -1,6 +1,5 @@
 package org.feuyeux.alog.service;
 
-
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.extern.slf4j.Slf4j;

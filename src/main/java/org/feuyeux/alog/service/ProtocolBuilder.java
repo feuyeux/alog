@@ -11,7 +11,7 @@ public class ProtocolBuilder {
     public static TalkRequest buildRequest() {
         return TalkRequest.newBuilder()
                 .setMeta("user=eric")
-                .setData("query=ai,from=0,size=1000,order=x,sort=y")
+                .setData("query=abc,from=0,size=1000,order=x,sort=y")
                 .build();
     }
 

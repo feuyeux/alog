@@ -35,7 +35,7 @@ public class ProtoClient {
     }
 
     public static void main(String[] args) {
-        ProtoClient protoClient = new ProtoClient("localhost", 50061);
+        ProtoClient protoClient = new ProtoClient("192.168.3.147", 50061);
         TalkResponse talkResponse = protoClient.talk(ProtocolBuilder.buildRequest());
         final TalkResult result = talkResponse.getResults(0);
         log.info("status={}", talkResponse.getStatus());
