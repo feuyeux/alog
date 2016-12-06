@@ -1,0 +1,15 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jersey:
+    application-path: /
+server:
+  servlet-path: /admin
+  error.whitelabel.enabled: false
+  port: 50060
+logging:
+  level:
+    root: INFO
+    org.feuyeux.alog: INFO
+alog.rpc.port: 50061

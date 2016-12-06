@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="log_base">/var/log/alog</Property>
+        <Property name="s_name">alog-server.log</Property>
+        <Property name="c_name">alog-client.log</Property>
+        <Property name="EX">%xwEx</Property>
+        <Property name="LOG_PATTERN">%clr{%date{MM-dd HH:mm:ss.SSS}}{faint}%clr{%5level}%clr{[%thread]}{magenta}%clr{%class{10}:}{cyan}%message%n${sys:EX}
+        </Property>
+        <Property name="FILE_PATTERN">%date{yyyy-MM-dd HH:mm:ss.SSS} %5level [%thread] %class{10}:%message%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STOUT" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="Server" fileName="${log_base}/${s_name}" filePattern="${log_base}/${s_name}-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${FILE_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="Client" fileName="${log_base}/${c_name}" filePattern="${log_base}/${c_name}-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${FILE_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="ERROR">
+            <AppenderRef ref="STOUT"/>
+        </Root>
+
+        <Logger name="org.feuyeux.alog" level="INFO">
+            <AppenderRef ref="Server"/>
+        </Logger>
+        <Logger name="org.feuyeux.alog.client" level="INFO">
+            <AppenderRef ref="Client"/>
+        </Logger>
+    </Loggers>
+</Configuration>
